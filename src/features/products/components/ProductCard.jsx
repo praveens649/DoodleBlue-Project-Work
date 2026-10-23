@@ -13,7 +13,6 @@ export function ProductCard({ product, quantity, onAdd, onDecrease, onIncrease }
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
       <a
         href={`/product/${product.id}`}
-        to={`/product/${product.id}`}
         className="flex h-56 items-center justify-center bg-slate-50 p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand"
         aria-label={`View details for ${product.title}`}
       >
@@ -28,7 +27,6 @@ export function ProductCard({ product, quantity, onAdd, onDecrease, onIncrease }
         <span className="mb-3 w-fit rounded-full bg-orange-50 px-2.5 py-1 text-xs font-bold capitalize text-brand">{category}</span>
         <a
           href={`/product/${product.id}`}
-          to={`/product/${product.id}`}
           className="line-clamp-2 min-h-12 text-base font-bold leading-6 text-ink hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
         >
           {product.title}
