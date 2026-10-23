@@ -25,8 +25,7 @@ export function CartSummary({ itemCount, subtotal, shipping, total, onClear }) {
         <span className="font-bold text-ink">Total</span>
         <span className="text-2xl font-extrabold text-brand">{formatCurrency(total)}</span>
       </div>
-      <Button type="button" disabled className="mt-6 w-full">Checkout unavailable</Button>
-      <p className="mt-3 text-center text-xs text-muted">Checkout is available in a future module.</p>
+      <Button to="/checkout" className="mt-6 w-full">Proceed to checkout</Button>
     </aside>
   )
 }

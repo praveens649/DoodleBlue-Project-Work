@@ -1,5 +1,6 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ProductsPage } from './ProductsPage';
@@ -18,7 +19,7 @@ describe('ProductsPage', () => {
         vi.stubGlobal('fetch', vi.fn()
             .mockResolvedValueOnce(new Response(JSON.stringify([product]), { status: 200 }))
             .mockResolvedValueOnce(new Response(JSON.stringify(['test']), { status: 200 })));
-        render(_jsx(Provider, { store: makeStore(), children: _jsx(ProductsPage, {}) }));
+        render(_jsx(MemoryRouter, { children: _jsx(Provider, { store: makeStore(), children: _jsx(ProductsPage, {}) }) }));
         expect(screen.getByText('Loading products...')).toBeInTheDocument();
         await waitFor(() => expect(screen.getByText('1 product received.')).toBeInTheDocument());
         expect(screen.getByText('Test product')).toBeInTheDocument();

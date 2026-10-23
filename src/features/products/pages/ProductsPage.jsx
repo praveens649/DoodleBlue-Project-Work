@@ -9,6 +9,7 @@ import { selectCartItems } from '../../cart/cartSelectors'
 import { useProducts } from '../hooks/useProducts'
 import { ProductFilters } from '../components/ProductFilters'
 import { ProductGrid } from '../components/ProductGrid'
+import { selectVisibleProducts } from '../productsSelectors'
 
 export function ProductsPage() {
   const dispatch = useDispatch()
@@ -24,16 +25,7 @@ export function ProductsPage() {
   )
 
   const visibleProducts = useMemo(() => {
-    const normalizedSearch = search.trim().toLowerCase()
-    const filtered = products.filter((product) => {
-      const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory
-      const matchesSearch = !normalizedSearch || product.title.toLowerCase().includes(normalizedSearch)
-      return matchesCategory && matchesSearch
-    })
-
-    if (sort === 'price-asc') return [...filtered].sort((a, b) => a.price - b.price)
-    if (sort === 'price-desc') return [...filtered].sort((a, b) => b.price - a.price)
-    return filtered
+    return selectVisibleProducts(products, search, selectedCategory, sort)
   }, [products, search, selectedCategory, sort])
 
   return (

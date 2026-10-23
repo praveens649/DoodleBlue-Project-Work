@@ -8,3 +8,17 @@ export const selectSelectedProduct = (state) => state.products.selectedProduct;
 export const selectSelectedProductId = (state) => state.products.selectedProductId;
 export const selectSelectedProductStatus = (state) => state.products.selectedProductStatus;
 export const selectSelectedProductError = (state) => state.products.selectedProductError;
+
+export function selectVisibleProducts(products, search, category, sort) {
+    const normalizedSearch = search.trim().toLowerCase();
+    const filtered = products.filter((product) => {
+        const matchesCategory = category === 'all' || product.category === category;
+        const matchesSearch = !normalizedSearch || product.title.toLowerCase().includes(normalizedSearch);
+        return matchesCategory && matchesSearch;
+    });
+    if (sort === 'price-asc')
+        return [...filtered].sort((a, b) => a.price - b.price);
+    if (sort === 'price-desc')
+        return [...filtered].sort((a, b) => b.price - a.price);
+    return filtered;
+}
