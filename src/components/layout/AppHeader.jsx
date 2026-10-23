@@ -1,5 +1,5 @@
 import React from 'react'
-import { Search, ShoppingCart, X } from 'lucide-react'
+import { Search, ShoppingBag, ShoppingCart, X } from 'lucide-react'
 import { Link, NavLink, useSearchParams } from 'react-router-dom'
 import { useAppSelector } from '../../store/hooks'
 import { selectCartItemCount } from '../../features/cart/cartSelectors'
@@ -21,7 +21,9 @@ export function AppHeader() {
       <div className="page-container !py-4">
         <div className="flex min-h-12 items-center gap-4">
           <Link to="/" className="group flex shrink-0 items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-300">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-brand text-lg font-black shadow-lg shadow-orange-950/30">S</span>
+            <span className="flex size-9 items-center justify-center rounded-lg bg-brand text-white shadow-lg shadow-orange-950/30" aria-hidden="true">
+              <ShoppingBag size={19} strokeWidth={2.5} />
+            </span>
             <span>
               <span className="block text-xl font-extrabold tracking-tight">Shop<span className="text-orange-400">Kart</span></span>
               <span className="hidden text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 sm:block">Everyday essentials</span>

@@ -9,6 +9,8 @@ import { useAppSelector } from '../../../store/hooks'
 import { addToCart, decrementQuantity, incrementQuantity } from '../../cart/cartSlice'
 import { selectCartItems } from '../../cart/cartSelectors'
 import { selectProducts } from '../productsSelectors'
+import { selectProductsStatus } from '../productsSelectors'
+import { fetchProducts } from '../productsSlice'
 import { useProductById } from '../hooks/useProductById'
 import { ProductGrid } from '../components/ProductGrid'
 import { formatCurrency } from '../../../utils/formatCurrency'
@@ -53,6 +55,7 @@ export function ProductDetailPage() {
   const productId = parseProductId(id)
   const dispatch = useDispatch()
   const products = useAppSelector(selectProducts)
+  const productsStatus = useAppSelector(selectProductsStatus)
   const cartItems = useAppSelector(selectCartItems)
   const { product, status, error, retry } = useProductById(productId)
   const [quantity, setQuantity] = useState(1)
@@ -62,6 +65,10 @@ export function ProductDetailPage() {
     setQuantity(1)
     setAdded(false)
   }, [productId])
+
+  useEffect(() => {
+    if (productsStatus === 'idle') void dispatch(fetchProducts())
+  }, [dispatch, productsStatus])
 
   const relatedProducts = useMemo(() => {
     if (!product) return []
