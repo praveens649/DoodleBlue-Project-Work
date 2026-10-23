@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1B1F2A;
+  --color-brand: #C2410C;
+  --color-brand-dark: #9A3412;
+  --color-page: #F6F7F9;
+  --color-border: #E4E7EE;
+  --color-muted: #5B6170;
+  --color-success: #1F6F5A;
+  --color-ink: #1B1F2A;
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Manrope', sans-serif;
+}
+
+:root { font-family: var(--font-sans); color: var(--color-ink); background: var(--color-page); }
+body { margin: 0; min-width: 320px; background: var(--color-page); }
+*, *::before, *::after { box-sizing: border-box; }
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.page-container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.25rem; padding-block: 4rem; }
+.page-title { margin: 0 0 1rem; font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; letter-spacing: -0.04em; }
+.page-intro { max-width: 38rem; margin: 0; color: var(--color-muted); font-size: 1.05rem; line-height: 1.7; }
+.eyebrow { margin: 0 0 0.75rem; color: var(--color-brand); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.badge-accent { border-radius: 999px; background: #f97316; color: white; padding: 0.2rem 0.45rem; font-size: 0.7rem; font-weight: 700; line-height: 1; }
+@media (min-width: 640px) { .page-container { padding-inline: 2rem; } }
