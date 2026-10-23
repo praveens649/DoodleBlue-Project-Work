@@ -69,7 +69,7 @@ export function CartPage() {
             const quantity = Number.isInteger(item.quantity) && item.quantity > 0 ? item.quantity : 1
             const price = Number(product.price) || 0
             return (
-              <article key={product.id} className="flex gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm sm:gap-5 sm:p-5">
+              <article key={product.id} className="flex gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm transition hover:shadow-md sm:gap-5 sm:p-5">
                 <Link to={`/product/${product.id}`} className="flex size-24 shrink-0 items-center justify-center rounded-xl bg-slate-50 p-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand sm:size-32" aria-label={`View ${product.title || 'product'}`}>
                   {product.image ? <img src={product.image} alt={product.title || 'Product'} className="h-full w-full object-contain" /> : <span className="text-xs text-muted">No image</span>}
                 </Link>
@@ -83,7 +83,7 @@ export function CartPage() {
                       <Trash2 size={18} aria-hidden="true" />
                     </button>
                   </div>
-                  <div className="mt-5 flex flex-wrap items-end justify-between gap-3">
+                  <div className="mt-5 flex flex-wrap items-end justify-between gap-4 border-t border-border/70 pt-4">
                     <div>
                       <p className="text-sm text-muted">Unit price</p>
                       <p className="font-bold text-brand">{formatCurrency(price)}</p>

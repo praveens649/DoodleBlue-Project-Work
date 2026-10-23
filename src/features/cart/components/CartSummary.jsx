@@ -4,9 +4,9 @@ import { formatCurrency } from '../../../utils/formatCurrency'
 
 export function CartSummary({ itemCount, subtotal, shipping, total, onClear }) {
   return (
-    <aside className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6" aria-labelledby="cart-summary-heading">
+    <aside className="rounded-2xl border border-border bg-white p-5 shadow-sm lg:sticky lg:top-28 sm:p-6" aria-labelledby="cart-summary-heading">
       <div className="flex items-center justify-between gap-4">
-        <h2 id="cart-summary-heading" className="font-heading text-2xl font-extrabold text-ink">Order summary</h2>
+        <div><p className="eyebrow">Your total</p><h2 id="cart-summary-heading" className="font-heading text-2xl font-extrabold text-ink">Order summary</h2></div>
         <button type="button" onClick={onClear} className="text-sm font-bold text-muted underline-offset-4 hover:text-brand hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand">
           Clear cart
         </button>
@@ -25,7 +25,7 @@ export function CartSummary({ itemCount, subtotal, shipping, total, onClear }) {
         <span className="font-bold text-ink">Total</span>
         <span className="text-2xl font-extrabold text-brand">{formatCurrency(total)}</span>
       </div>
-      <Button to="/checkout" className="mt-6 w-full">Proceed to checkout</Button>
+      <Button to="/checkout" className="mt-6 w-full">Proceed to checkout <span aria-hidden="true">→</span></Button>
     </aside>
   )
 }

@@ -71,8 +71,11 @@ export function CheckoutPage() {
         <p className="page-intro">Enter your delivery details to place this demo order.</p>
       </div>
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6">
-          <h2 className="font-heading text-2xl font-extrabold text-ink">Delivery details</h2>
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-7">
+          <div className="flex items-start gap-3">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-orange-50 font-extrabold text-brand">1</span>
+            <div><h2 className="font-heading text-2xl font-extrabold text-ink">Delivery details</h2><p className="mt-1 text-sm text-muted">Where should we send your order?</p></div>
+          </div>
           <div className="mt-6 grid gap-5 sm:grid-cols-2">
             <Input label="Full name" name="name" value={form.name} onChange={handleChange} required autoComplete="name" />
             <Input label="Email address" name="email" type="email" value={form.email} onChange={handleChange} required autoComplete="email" />

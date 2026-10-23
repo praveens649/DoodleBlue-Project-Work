@@ -11,21 +11,21 @@ export function ProductCard({ product, quantity, onAdd, onDecrease, onIncrease }
   const category = product.category || 'Uncategorized'
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl hover:shadow-orange-950/10">
       <Link
         to={`/product/${product.id}`}
-        className="flex h-56 items-center justify-center bg-slate-50 p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand"
+        className="relative flex h-56 items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-orange-50/40 p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand"
         aria-label={`View details for ${product.title}`}
       >
         <img
           src={product.image || undefined}
           alt={product.title}
-          className="h-full w-full object-contain"
+          className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
           onError={(event) => { event.currentTarget.style.visibility = 'hidden' }}
         />
       </Link>
-      <div className="flex flex-1 flex-col p-5">
-        <span className="mb-3 w-fit rounded-full bg-orange-50 px-2.5 py-1 text-xs font-bold capitalize text-brand">{category}</span>
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <span className="mb-3 w-fit rounded-full bg-orange-50 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wide text-brand">{category}</span>
         <Link
           to={`/product/${product.id}`}
           className="line-clamp-2 min-h-12 text-base font-bold leading-6 text-ink hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
@@ -38,7 +38,7 @@ export function ProductCard({ product, quantity, onAdd, onDecrease, onIncrease }
           <span>({reviewCount} reviews)</span>
         </div>
         <div className="mt-auto flex items-center justify-between gap-3 pt-5">
-          <span className="text-xl font-extrabold text-brand">{formatCurrency(product.price)}</span>
+          <span className="text-2xl font-extrabold tracking-tight text-brand">{formatCurrency(product.price)}</span>
           {quantity > 0 ? (
             <QuantityStepper
               quantity={quantity}

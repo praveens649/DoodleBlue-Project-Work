@@ -21,9 +21,8 @@ describe('ProductsPage', () => {
             .mockResolvedValueOnce(new Response(JSON.stringify(['test']), { status: 200 })));
         render(_jsx(MemoryRouter, { children: _jsx(Provider, { store: makeStore(), children: _jsx(ProductsPage, {}) }) }));
         expect(screen.getByText('Loading products...')).toBeInTheDocument();
-        await waitFor(() => expect(screen.getByText('1 product received.')).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByText('product to explore')).toBeInTheDocument())
         expect(screen.getByText('Test product')).toBeInTheDocument();
         expect(screen.getByText('$12.50')).toBeInTheDocument();
-        expect(screen.getByText('Categories available: test.')).toBeInTheDocument();
     });
 });

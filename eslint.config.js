@@ -15,6 +15,7 @@ export default [
       },
       globals: {
         Response: 'readonly',
+        URLSearchParams: 'readonly',
         document: 'readonly',
         fetch: 'readonly',
       },

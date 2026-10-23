@@ -11,15 +11,16 @@ export function PurchaseSuccessPage() {
 
   return (
     <PageContainer>
-      <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-white px-6 py-12 text-center shadow-sm sm:px-12">
-        <span className="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-emerald-50 text-success">
+      <div className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-border bg-white px-6 py-12 text-center shadow-xl shadow-slate-950/5 sm:px-12">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-brand via-orange-400 to-amber-300" />
+        <span className="mx-auto mb-6 flex size-20 items-center justify-center rounded-3xl bg-emerald-50 text-success shadow-inner">
           <CheckCircle2 size={36} aria-hidden="true" />
         </span>
         <p className="eyebrow">Order confirmed</p>
         <h1 className="page-title text-3xl sm:text-4xl">Thank you for your purchase!</h1>
         <p className="page-intro mx-auto">Your ShopKart order has been successfully placed. We’ll keep you updated about delivery.</p>
         {order?.orderId ? (
-          <div className="mx-auto mt-8 max-w-sm rounded-xl bg-slate-50 p-5 text-left text-sm">
+          <div className="mx-auto mt-8 max-w-sm rounded-2xl border border-border bg-slate-50/70 p-5 text-left text-sm">
             <div className="flex items-center gap-2 font-bold text-ink"><PackageCheck size={18} className="text-success" aria-hidden="true" /> Order details</div>
             <dl className="mt-4 space-y-2 text-muted">
               <div className="flex justify-between gap-4"><dt>Order number</dt><dd className="font-bold text-ink">{order.orderId}</dd></div>

@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { PageContainer } from '../../../components/layout/PageContainer'
 import { Button } from '../../../components/ui/Button'
@@ -15,7 +16,8 @@ export function ProductsPage() {
   const dispatch = useDispatch()
   const { products, status, error, retry, categories, categoriesStatus, categoriesError } = useProducts()
   const cartItems = useAppSelector(selectCartItems)
-  const [search, setSearch] = useState('')
+  const [searchParams] = useSearchParams()
+  const search = searchParams.get('q') ?? ''
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [sort, setSort] = useState('featured')
 
@@ -30,15 +32,18 @@ export function ProductsPage() {
 
   return (
     <PageContainer>
-      <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="relative mb-8 overflow-hidden rounded-3xl bg-primary px-6 py-8 text-white shadow-xl shadow-slate-950/10 sm:px-10 sm:py-10">
+        <div className="pointer-events-none absolute -right-16 -top-24 size-72 rounded-full bg-brand/30 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 left-1/3 size-64 rounded-full bg-orange-400/10 blur-3xl" />
         <div>
-          <p className="eyebrow">Shop the collection</p>
-          <h1 className="page-title mb-0">Find something you’ll love</h1>
+          <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-orange-300">The ShopKart collection</p>
+          <h1 className="page-title relative mb-3 max-w-2xl text-white">All products</h1>
+          <p className="relative max-w-xl text-sm leading-6 text-slate-300 sm:text-base">Thoughtful essentials, useful upgrades, and everyday favorites — all in one place.</p>
         </div>
         {status === 'succeeded' && (
-          <div className="text-right text-sm font-bold text-muted">
-            <p>{products.length} product{products.length === 1 ? '' : 's'} received.</p>
-            {categoriesStatus === 'succeeded' && <p className="mt-1 font-normal">Categories available: {categories.join(', ') || 'none'}.</p>}
+          <div className="relative mt-6 flex items-center gap-3 text-sm sm:absolute sm:bottom-8 sm:right-10 sm:mt-0">
+            <span className="flex size-10 items-center justify-center rounded-full bg-white/10 font-extrabold text-orange-300">{products.length}</span>
+            <span className="text-slate-300">{products.length === 1 ? 'product' : 'products'} to explore</span>
           </div>
         )}
       </div>
@@ -55,8 +60,6 @@ export function ProductsPage() {
             categories={categoriesStatus === 'succeeded' ? categories : []}
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
-            search={search}
-            onSearchChange={setSearch}
             sort={sort}
             onSortChange={setSort}
             categoriesError={categoriesStatus === 'failed' ? (categoriesError?.message ?? 'Categories could not be loaded.') : null}
