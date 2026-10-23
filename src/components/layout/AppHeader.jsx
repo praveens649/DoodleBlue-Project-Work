@@ -2,8 +2,12 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ShoppingCart } from 'lucide-react'
 import { Input } from '../ui/Input'
+import { useAppSelector } from '../../store/hooks'
+import { selectCartItemCount } from '../../features/cart/cartSelectors'
 
 export function AppHeader() {
+  const cartItemCount = useAppSelector(selectCartItemCount)
+
   return (
     <header className="bg-primary text-white">
       <div className="page-container flex min-h-20 flex-wrap items-center gap-4 py-4">
@@ -17,8 +21,8 @@ export function AppHeader() {
           <NavLink to="/" className="rounded-lg px-3 py-2 text-sm font-bold hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-300">Products</NavLink>
           <NavLink to="/cart" className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-bold hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-300">
             <ShoppingCart size={20} aria-hidden="true" />
-            <span className="badge-accent">0</span>
-            <span className="sr-only">Cart, 0 items</span>
+            <span className="badge-accent">{cartItemCount}</span>
+            <span className="sr-only">Cart, {cartItemCount} items</span>
           </NavLink>
         </nav>
       </div>
