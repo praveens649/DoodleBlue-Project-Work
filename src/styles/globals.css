@@ -15,6 +15,12 @@
 }
 
 :root { font-family: var(--font-sans); color: var(--color-ink); background: var(--color-page); }
+.dark {
+  --color-page: #111827;
+  --color-border: #374151;
+  --color-muted: #aeb7c6;
+  --color-ink: #f3f4f6;
+}
 body { margin: 0; min-width: 320px; background: var(--color-page); }
 *, *::before, *::after { box-sizing: border-box; }
 .app-shell { min-height: 100vh; display: flex; flex-direction: column; }
@@ -23,5 +29,13 @@ body { margin: 0; min-width: 320px; background: var(--color-page); }
 .page-intro { max-width: 38rem; margin: 0; color: var(--color-muted); font-size: 1.05rem; line-height: 1.7; }
 .eyebrow { margin: 0 0 0.75rem; color: var(--color-brand); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; }
 .badge-accent { border-radius: 999px; background: #f97316; color: white; padding: 0.2rem 0.45rem; font-size: 0.7rem; font-weight: 700; line-height: 1; }
+.dark .bg-white { background-color: #1f2937; }
+.dark .bg-page { background-color: var(--color-page); }
+.dark .text-ink { color: var(--color-ink); }
+.dark .text-muted { color: var(--color-muted); }
+.dark .border-border { border-color: var(--color-border); }
+.dark input,
+.dark select,
+.dark textarea { color-scheme: dark; }
 @media (min-width: 640px) { .page-container { padding-inline: 2rem; } }
 @media (max-width: 639px) { .page-container { padding-block: 2.5rem; } .page-title { font-size: 2.25rem; } }

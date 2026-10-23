@@ -1,11 +1,13 @@
 import React from 'react'
-import { Search, ShoppingBag, ShoppingCart, X } from 'lucide-react'
+import { Moon, Search, ShoppingBag, ShoppingCart, Sun, X } from 'lucide-react'
 import { Link, NavLink, useSearchParams } from 'react-router-dom'
 import { useAppSelector } from '../../store/hooks'
 import { selectCartItemCount } from '../../features/cart/cartSelectors'
+import { useTheme } from '../theme/ThemeContext'
 
 export function AppHeader() {
   const cartItemCount = useAppSelector(selectCartItemCount)
+  const { theme, toggleTheme } = useTheme()
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('q') ?? ''
 
@@ -46,6 +48,15 @@ export function AppHeader() {
           </div>
           <nav className="flex items-center gap-2" aria-label="Main navigation">
             <NavLink to="/" className="hidden rounded-lg px-3 py-2 text-sm font-bold text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-300 sm:block">Products</NavLink>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              className="rounded-xl border border-white/10 bg-white/5 p-2.5 text-slate-200 transition hover:border-orange-400/50 hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-300"
+            >
+              {theme === 'dark' ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+            </button>
             <NavLink to="/cart" className="group flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-bold transition hover:border-orange-400/50 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-300">
               <ShoppingCart size={19} aria-hidden="true" />
               <span className="hidden sm:inline">Cart</span>
