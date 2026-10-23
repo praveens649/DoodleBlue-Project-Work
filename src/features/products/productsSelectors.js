@@ -1,0 +1,10 @@
+export const selectProducts = (state) => state.products.products;
+export const selectProductsStatus = (state) => state.products.status;
+export const selectProductsError = (state) => state.products.error;
+export const selectCategories = (state) => state.products.categories;
+export const selectCategoriesStatus = (state) => state.products.categoriesStatus;
+export const selectCategoriesError = (state) => state.products.categoriesError;
+export const selectSelectedProduct = (state) => state.products.selectedProduct;
+export const selectSelectedProductId = (state) => state.products.selectedProductId;
+export const selectSelectedProductStatus = (state) => state.products.selectedProductStatus;
+export const selectSelectedProductError = (state) => state.products.selectedProductError;
